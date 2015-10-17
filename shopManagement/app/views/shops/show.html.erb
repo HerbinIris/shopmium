@@ -1,0 +1,99 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Chain:</strong>
+  <%= @shop.chain %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @shop.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @shop.longitude %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @shop.city %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @shop.zip %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @shop.department %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @shop.phone %>
+</p>
+
+<p>
+  <strong>Hour:</strong>
+  <%= @shop.hour %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @shop.store_id %>
+</p>
+
+<p>
+  <strong>Is address computed:</strong>
+  <%= @shop.is_address_computed %>
+</p>
+
+<p>
+  <strong>Is location computed:</strong>
+  <%= @shop.is_location_computed %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @shop.key %>
+</p>
+
+<p>
+  <strong>Ignored:</strong>
+  <%= @shop.ignored %>
+</p>
+
+<p>
+  <strong>Ignore reason:</strong>
+  <%= @shop.ignore_reason %>
+</p>
+
+<p>
+  <strong>Overload chain name:</strong>
+  <%= @shop.overload_chain_name %>
+</p>
+
+<p>
+  <strong>Mandatory coords:</strong>
+  <%= @shop.mandatory_coords %>
+</p>
+
+<p>
+  <strong>Country code:</strong>
+  <%= @shop.country_code %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>
