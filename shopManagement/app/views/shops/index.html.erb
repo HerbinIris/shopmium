@@ -7,24 +7,7 @@
     <tr>
       <th>Chain</th>
       <th>Name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>Zip</th>
-      <th>Department</th>
-      <th>Phone</th>
-      <th>Hour</th>
-      <th>Store</th>
-      <th>Is address computed</th>
-      <th>Is location computed</th>
-      <th>Key</th>
-      <th>Ignored</th>
-      <th>Ignore reason</th>
-      <th>Overload chain name</th>
-      <th>Mandatory coords</th>
-      <th>Country code</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -33,23 +16,6 @@
       <tr>
         <td><%= shop.chain %></td>
         <td><%= shop.name %></td>
-        <td><%= shop.latitude %></td>
-        <td><%= shop.longitude %></td>
-        <td><%= shop.address %></td>
-        <td><%= shop.city %></td>
-        <td><%= shop.zip %></td>
-        <td><%= shop.department %></td>
-        <td><%= shop.phone %></td>
-        <td><%= shop.hour %></td>
-        <td><%= shop.store_id %></td>
-        <td><%= shop.is_address_computed %></td>
-        <td><%= shop.is_location_computed %></td>
-        <td><%= shop.key %></td>
-        <td><%= shop.ignored %></td>
-        <td><%= shop.ignore_reason %></td>
-        <td><%= shop.overload_chain_name %></td>
-        <td><%= shop.mandatory_coords %></td>
-        <td><%= shop.country_code %></td>
         <td><%= link_to 'Show', shop %></td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
