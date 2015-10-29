@@ -1,10 +1,29 @@
+require 'builder'
+require 'will_paginate'
+include ActionView::Helpers::NumberHelper
+
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy]
+ 
+before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   # GET /shops
   # GET /shops.json
   def index
-    @shops = Shop.all
+      @filterrific = initialize_filterrific(
+      Shop,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Shop.options_for_sorted_by,
+      },
+      #persistence_id: 'shared_key',
+      #default_filter_params: {},
+      #available_filters: [],
+    ) or return
+    @shops = @filterrific.find.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /shops/1
@@ -17,9 +36,10 @@ class ShopsController < ApplicationController
     @shop = Shop.new
   end
 
+
   # GET /shops/1/edit
   def edit
-  end
+  end 
 
   # POST /shops
   # POST /shops.json
@@ -69,6 +89,11 @@ class ShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shop_params
-      params.require(:shop).permit(:chain, :name, :latitude, :longitude, :address, :city, :zip, :department, :phone, :hour, :store_id, :is_address_computed, :is_location_computed, :key, :ignored, :ignore_reason, :overload_chain_name, :mandatory_coords, :country_code)
+      params.require(:shop).permit(:chain, :name)
     end
+
+
 end
+
+  
+

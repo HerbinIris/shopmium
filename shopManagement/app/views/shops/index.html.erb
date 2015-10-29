@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
-
+<%# app/views/shops/index.html.erb %>
+<%= javascript_include_tag "index.js" %>
 <h1>Listing Shops</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Chain</th>
-      <th>Name</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @shops.each do |shop| %>
-      <tr>
-        <td><%= shop.chain %></td>
-        <td><%= shop.name %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<%= form_for_filterrific @filterrific do |f| %>
+  <div>
+    Search
+      <%= f.text_field(
+        :search_query,
+        class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+      Sorted by
+         <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+       reset_filterrific_url,
+     ) %>
+  </iv>
+  <%= render_filterrific_spinner %>
+<% end %>
+<%= render(
+  partial: 'shops/list',
+  locals: { shops: @shops }
+) %>
 
 <%= link_to 'New Shop', new_shop_path %>
+
+
+
