@@ -1,17 +1,28 @@
 class Shop < ActiveRecord::Base
-
+  acts_as_mappable :lat_column_name => :latitude,
+		   :lng_column_name => :longitude,
+                   :distance_field_name => :distance
+  
   filterrific(
      default_filter_params: { sorted_by: 'name_asc' },
      available_filters: [
        :sorted_by,
-       :search_query,    
+       :search_query,   
+       :distance,
+       :nearest, 
      ]
   )
 
-
   scope :search_query, -> (name) { where("name like ?", "#{name}%")}
+ 
+  scope :distance, lambda { |distance_attrs| 
+    Shop.within(distance_attrs[:rayon], :origin => [distance_attrs[:latitude], distance_attrs[:longitude]])
+  }
 
-
+  scope :nearest, lambda { |nearest_attrs|
+    Shop.by_distance(:origin => [nearest_attrs[:latitude], nearest_attrs[:longitude]]).limit(nearest_attrs[:nombre])
+  }
+ 
 
   scope :sorted_by, lambda { |sort_option|
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
