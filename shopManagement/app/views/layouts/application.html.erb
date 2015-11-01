@@ -1,14 +1,35 @@
 <!DOCTYPE html>
+<style>
+  body {
+    padding-top: 60px;
+  }
+  @media (max-width: 980px) {
+    body {
+      padding-top: 0;
+    }
+  }
+</style>
 <html>
-<head>
-  <title>ShopManagement</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>ShopManagement</title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <a class="navbar-brand">Fat shop management</a>
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Home",   shops_path %></li>
+            <li><%= link_to "New Shop",  new_shop_path  %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container-fluid" >
+      <%= yield %>
+    </div>
+  </body>
 </html>

@@ -4,23 +4,25 @@ class Shop < ActiveRecord::Base
                    :distance_field_name => :distance
   
   filterrific(
-     default_filter_params: { sorted_by: 'name_asc' },
-     available_filters: [
-       :sorted_by,
-       :search_query,   
-       :distance,
-       :nearest, 
-     ]
+    default_filter_params: { sorted_by: 'name_asc' },
+    available_filters: [
+      :sorted_by,
+      :search_query,   
+      :distance,
+      :nearest, 
+    ]
   )
 
   scope :search_query, -> (name) { where("name like ?", "#{name}%")}
  
-  scope :distance, lambda { |distance_attrs| 
+  scope :distance, lambda { |distance_attrs|
+    return nil  if distance_attrs[:rayon].empty? || distance_attrs[:longitude].empty? || distance_attrs[:latitude].empty? 
     Shop.within(distance_attrs[:rayon], :origin => [distance_attrs[:latitude], distance_attrs[:longitude]])
   }
 
   scope :nearest, lambda { |nearest_attrs|
-    Shop.by_distance(:origin => [nearest_attrs[:latitude], nearest_attrs[:longitude]]).limit(nearest_attrs[:nombre])
+    return nil  if nearest_attrs[:number].empty? || nearest_attrs[:longitude].empty? || nearest_attrs[:latitude].empty?
+    Shop.by_distance(:origin => [nearest_attrs[:latitude], nearest_attrs[:longitude]]).limit(nearest_attrs[:number])
   }
  
 
@@ -39,7 +41,7 @@ class Shop < ActiveRecord::Base
   def self.options_for_sorted_by
     [
       ['Name (a-z)', 'name_asc'],
-      ['Creation', 'created_at_asc'],
+      ['Creation', 'created_at_desc'],
     ]
   end
 
