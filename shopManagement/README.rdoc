@@ -1,28 +1,31 @@
-== README
+CONTENTS OF THIS FILE
+---------------------
+   
+ * Introduction
+ * Requirements
+ * Installation
+ * FAQ
+ * Maintainers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+INTRODUCTION
+------------
 
-Things you may want to cover:
+Small application for Shopmium internship.
+Shop manegement
 
-* Ruby version
+REQUIREMENTS
+------------
+This module requires the following modules:
 
-* System dependencies
+ * Sqlite
+ * Rails 4.2.4
 
-* Configuration
+INSTALLATION
+------------
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ * Dowload the entire git repos
+ * Run bundles
+ * Launch rake update_shops:import for filling the database
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
